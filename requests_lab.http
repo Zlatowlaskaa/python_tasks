@@ -1,0 +1,31 @@
+### This file contains the requests to test the API endpoints as described here:
+### https://docs.google.com/document/d/1_05cNoTKnPxFVBDe8ZpJ6ujeP41CrfSWMX8WBjxnM_s
+### Use VS Code REST Client extension to run this file
+
+
+@base_url=http://localhost:5000
+
+
+### creates a new item
+
+# @name item_create
+POST {{base_url}}/item HTTP/1.1
+Content-Type: application/json
+
+{"name": "apple", "price": 10}
+
+###
+
+@item_name = {{item_create.response.body.$.name}}
+
+
+
+### Get item details by its name
+
+GET {{base_url}}/item/{{item_name}} HTTP/1.1
+Accept: application/json
+
+
+### Delete an item by name
+
+DELETE {{base_url}}/item/{{item_name}} HTTP/1.1
